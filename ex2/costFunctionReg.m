@@ -16,8 +16,8 @@ grad = zeros(size(theta));
 %               You should set J to the cost.
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
-
-
+J = modularCostFunction(theta, X, y) + (lambda /(2*m) ) * sum((theta .* [0; ones(length(theta) - 1, 1)]) .^2);
+grad = zeros(size(theta));
 
 
 
