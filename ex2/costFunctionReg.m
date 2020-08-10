@@ -17,9 +17,14 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 J = modularCostFunction(theta, X, y) + (lambda /(2*m) ) * sum((theta .* [0; ones(length(theta) - 1, 1)]) .^2);
-grad = zeros(size(theta));
 
 
+%for i = 1:length(theta)
+%  grad(i) = (((sigmoid(X * theta) - y)' * X(:,i))/m) + (lambda / m) * (theta .* [0; ones(length(theta) - 1, 1)]);
+%end
+
+reg_term = [0 (lambda*theta(2:end)/m)'];
+grad = sum(X.*(sigmoid(X*theta) - y)) / m + reg_term;
 
 
 % =============================================================
