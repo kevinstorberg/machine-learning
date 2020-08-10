@@ -16,10 +16,15 @@ p = zeros(m, 1);
 %
 
 
+p = sigmoid(X * theta)
 
-
-
-
+for iteration = 1:size(p)
+  if p(iteration) >= 0.5
+    p(iteration) = 1
+  else
+    p(iteration) = 0
+  end
+end
 
 % =========================================================================
 

@@ -8,10 +8,7 @@ m = length(y); % number of training examples
 J_history = zeros(num_iters, 1);
 
 for iter = 1:num_iters
-    %h = sigmoid(X * theta);
-    %grad = (X'*(h - y))./m;
-    %theta = theta - alpha * grad;
-    %theta = theta - ((alpha / m) * (sigmoid(X * theta) - y)' * X)';
+    theta = theta - ((alpha / m) * (sigmoid(X * theta) - y)' * X)';
     % ====================== YOUR CODE HERE ======================
     % Instructions: Perform a single gradient step on the parameter vector
     %               theta. 
@@ -27,14 +24,7 @@ for iter = 1:num_iters
     % ============================================================
 
     % Save the cost J in every iteration    
-    %J_history(iter) = modularCostFunction(theta, X, y);
-
-  %z = X * theta;
-  %h = sigmoid(z);
-
-  %J_history(iter) = modularCostFunction(theta, X, y);
-  %grad = (1/m) *  X' * (h - y); 
-  %theta = theta - alpha .* grad;
+    J_history(iter) = modularCostFunction(theta, X, y);
 end
 
 end

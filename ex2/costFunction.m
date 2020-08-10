@@ -20,18 +20,10 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 J = modularCostFunction(theta, X, y);
-%grad = gradientDescent(X, y, theta, 0.1, 100);
-
-
-h = sigmoid(X*theta);
-t1=(y'*log(h));
-t2=(1-y)'*log(1-h);
-J=-(t1+t2)/m;
 
 for i = 1:length(theta)
-grad(i)=((h-y)'*X(:,i))/m;
+  grad(i) = ((sigmoid(X * theta) - y)' * X(:,i))/m;
 endfor
-
 
 
 % =============================================================
