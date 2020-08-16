@@ -35,14 +35,35 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
-z = X * theta;
-h = sigmoid(z);
-J = (1 / m) * sum( -y' * log(h) - (1 - y)' * log( 1 - h) ) + (lambda /(2*m) ) * sum((theta .* [0; ones(length(theta) - 1, 1)]) .^2);
+%z = X * theta;
+%h = sigmoid(z);
+%J = (1 / m) * sum( -y' * log(h) - (1 - y)' * log( 1 - h) ) + (lambda /(2*m) ) * sum((theta .* [0; ones(length(theta) - 1, 1)]) .^2);
 
-reg_term = [0 (lambda*theta(2:end)/m)'];
-grad = sum(X.*(sigmoid(X*theta) - y)) / m + reg_term;
+%reg_term = [0 (lambda*theta(2:end)/m)'];
+%grad = sum(X.*(sigmoid(X*theta) - y)) / m + reg_term;
+
+%Hypotheses
+hx = sigmoid(X * theta);
+
+%%The cost without regularization
+J_partial = (-y' * log(hx) - (1 - y)' * log(1 - hx)) ./ m;
 
 
+%%Regularization Cost Added
+J_regularization = (lambda/(2*m)) * sum(theta(2:end).^2);
+
+%%Cost when we add regularization
+J = J_partial + J_regularization;
+
+%Grad without regularization
+grad_partial = (1/m) * (X' * (hx -y));
+
+%%Grad Cost Added
+grad_regularization = (lambda/m) .* theta(2:end);
+
+grad_regularization = [0; grad_regularization];
+
+grad = grad_partial + grad_regularization;
 
 
 
