@@ -54,6 +54,14 @@ for i = 1:m
 
   J += -(1/m) * (Y' * log(hx) + (1 - Y') * log(1 - hx));
 end
+
+%J = J + (lambda/(2*m)) * (sum( (Theta1(2:end).^2)(:) ) + sum( (Theta2(2:end).^2)(:) ) );
+
+theta2_reg = Theta2; theta2_reg(:,1) = 0;
+theta1_reg = Theta1; theta1_reg(:,1) = 0;
+
+J = J + lambda / (2 * m) * (sum( (theta1_reg.^2)(:) ) + sum( (theta2_reg.^2)(:) ) );
+
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
