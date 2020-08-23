@@ -81,8 +81,8 @@ theta1_reg = Theta1; theta1_reg(:,1) = 0;
 
 J = J + lambda / (2 * m) * (sum( (theta1_reg.^2)(:) ) + sum( (theta2_reg.^2)(:) ) );
 
-Theta2_grad = Theta2_grad / m;
-Theta1_grad = Theta1_grad / m;
+Theta2_grad = Theta2_grad / m + (lambda / m) * theta2_reg;
+Theta1_grad = Theta1_grad / m + (lambda / m) * theta1_reg;
 % Part 3: Implement regularization with the cost function and gradients.
 %
 %         Hint: You can implement this around the code for
