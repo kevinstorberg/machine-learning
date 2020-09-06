@@ -23,11 +23,34 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+% Commented out because it takes so damn long to run
+%value_set = [0.01, 0.03, 0.1, 0.3, 1.0, 3, 10, 30];
 
+%for i=1:length(value_set)
+%
+%  c(i) = value_set(i);
+%
+%  for j=1:length(value_set)
+%
+%    s(j) = value_set(j);
+%
+%    model = svmTrain(X, y, c(i), @(x1, x2) gaussianKernel(x1, x2, s(j)));
+%       
+%    predictions = svmPredict(model, Xval);
+%    
+%    prediction_errors(i, j) = mean(double(predictions ~= yval));
+%
+%  end
+%end
 
+%minimums = min(min(prediction_errors));
+%[i, j] = find(prediction_errors == minimums);
+%
+%C = value_set(i)
+%sigma = value_set(j)
 
-
-
+C = 1;
+sigma = 0.1;
 
 % =========================================================================
 
